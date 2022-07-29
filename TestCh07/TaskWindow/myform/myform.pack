@@ -1,0 +1,11 @@
+﻿#include @"TaskWindow\myform\myform.ph"
+
+#requires @"TaskWindow\myform\myform2.frm"
+% privately used packages
+
+% private interfaces
+
+% private classes
+
+% implementations
+#include @"TaskWindow\myform\myform.pro"

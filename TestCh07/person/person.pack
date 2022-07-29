@@ -1,0 +1,11 @@
+﻿#include @"person\person.ph"
+
+% privately used packages
+#include @"pfc\stream\stream.ph"
+
+% private interfaces
+
+% private classes
+
+% implementations
+#include @"person\person.pro"

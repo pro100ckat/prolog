@@ -1,0 +1,55 @@
+[System]
+Name='lab2petrov'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=15
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='Температура'
+Range=[15 55]
+NumMFs=3
+MF1='Холодно':'trimf',[-1.117 15.12 32.18]
+MF2='Тепло':'trimf',[19 35 51]
+MF3='Горячо':'trimf',[39 55 71]
+
+[Input2]
+Name='Напор'
+Range=[0 8]
+NumMFs=5
+MF1='нет':'trimf',[-2 0 2]
+MF2='меньше_среднего':'trimf',[0 2 4]
+MF3='средний':'trimf',[2 4 6]
+MF4='больше_среднего':'trimf',[4 6 8]
+MF5='высокий':'trimf',[6 8 10]
+
+[Output1]
+Name='Результат'
+Range=[0 1]
+NumMFs=3
+MF1='уменьшить':'constant',[0]
+MF2='не-менять':'constant',[0.5]
+MF3='добавить':'constant',[1]
+
+[Rules]
+0 1, 3 (1) : 1
+1 2, 3 (1) : 1
+1 4, 1 (1) : 1
+1 5, 1 (1) : 1
+2 2, 3 (1) : 1
+2 3, 2 (1) : 1
+2 4, 1 (1) : 1
+2 5, 1 (1) : 1
+3 2, 1 (1) : 1
+3 3, 1 (1) : 1
+3 4, 1 (1) : 1
+3 5, 1 (1) : 1
+3 4, 1 (1) : 2
+1 2, 3 (1) : 2
+1 3, 3 (1) : 1

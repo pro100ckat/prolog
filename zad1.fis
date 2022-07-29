@@ -1,0 +1,59 @@
+[System]
+Name='laba2kov'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=9
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='напор-воды'
+Range=[0 100]
+NumMFs=3
+MF1='нет':'gaussmf',[14.51 16.25]
+MF2='средний':'gaussmf',[14.16 50]
+MF3='сильный':'gaussmf',[17.34 83.75]
+
+[Input2]
+Name='температура'
+Range=[0 70]
+NumMFs=3
+MF1='холодно':'gaussmf',[12.08 0]
+MF2='нормально':'gaussmf',[9.91 35]
+MF3='горячо':'gaussmf',[19.82 70]
+
+[Output1]
+Name='результат_холодной'
+Range=[0 1]
+NumMFs=5
+MF1='уменьшить_сильно':'constant',[-1]
+MF2='уменьшить_слабо':'constant',[-0.5]
+MF3='ниче_не_делать':'constant',[0]
+MF4='увеличить_немного':'constant',[0.5]
+MF5='увеличить_сильно':'constant',[1]
+
+[Output2]
+Name='результат_горячей'
+Range=[0 1]
+NumMFs=5
+MF1='уменьшить_сильно':'constant',[-1]
+MF2='уменьшить_слабо':'constant',[-0.5]
+MF3='ничего_не_делать':'constant',[0]
+MF4='увеличить_немного':'constant',[0.5]
+MF5='увеличить_сильно':'constant',[1]
+
+[Rules]
+1 1, 2 5 (1) : 1
+1 2, 4 4 (1) : 1
+1 3, 5 2 (1) : 1
+2 2, 3 3 (1) : 1
+2 1, 2 4 (1) : 1
+2 3, 4 2 (1) : 1
+3 2, 2 2 (1) : 1
+3 1, 1 4 (1) : 1
+3 3, 2 1 (1) : 1

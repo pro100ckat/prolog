@@ -1,0 +1,43 @@
+domains
+	n=a(integer); ne_vagno
+	uslovie=d(string,string,string)
+	trebovanie=t(string,n,string,n,uslovie)
+
+predicates
+	p(string,string,string,integer,string,string,integer,uslovie,trebovanie)
+	zapros1(string,integer)
+	zapros2(string)
+	zapros3(sring,integer)
+	zapros4(string,integer)
+	zapros5(string)
+
+	p(agafonov, aleksandr, petrovich, 42, rus, vischee, 30000, d(da, ne_vagno, net), t(vischee,a(28), ne_vagno, a(40000), d(net, net, net))).
+	p(fedotova, olga, vasilevna, 35, rus, srednee, 10000, d(net, net, net), t(ne_vagno, a(40), ne_vagno, ne_vagno,d(da, net, net))).
+	p(ruprinov, dmitrii, viktorovich, 38, rus,vischee, 20000, d(da, da, net), t(ne_vagno, ne_vagno, ne_vagno, ne_vagno, d(ne_vagno, net, ne_vagno))).
+	p(dorogov, viktor, nikolaevich, 37, ukr,vischee, 40000, d(da, da, net), t(vischee, ne_vagno, ne_vagno, a(35000), d(ne_vagno, net, net))).
+	p(novikov, viktor, michailovich, 41,kaz,vischee, 30000, d(da, net, da), t(ne_vagno, a(38), ne_vagno, ne_vagno, d(ne_vagno, net, net))).
+	p(novikov2, viktor2, michailovich2, 41,kaz,vischee, 30000, d(da, net, da), t(ne_vagno, a(38), ne_vagno, ne_vagno, d(ne_vagno,ne_vagno,ne_vagno))).
+	p(kovale, andrey, vladimirovich, 41,kaz,vischee, 15000, d(ne_vagno, ne_vagno, ne_vagno), t(ne_vagno, a(20), ne_vagno, ne_vagno, d(da,da,da))).
+
+zapros1(S,A):-p(S,_,_,_,_,_,_,_,t(vischee,_,_,a(A), d(_,_,_))).
+zapros2(S):-p(S,_,_,_,_,_,_,d(ne_vagno, ne_vagno, ne_vagno), t(_,_,_,_,d(_,_,_))).
+zapros3(S,A):-p(S,_,_,Age,_,_,_,_,t(_,_,_,_,d(_,_,_))), Age < A.
+zapros5(S):-p(S,_,_,_,_,_,_,d(_,net,_),t(_,_,_,_,d(_,_,_))).
+
+
+
+%Запросы
+%zapros1(S,35000),write(S),nl,fail. +
+%zapros2(S),write(S),nl,fail. +
+%zapros3(S,40),write(S), nl,fail. +
+%zapros4(S,30),write(S),nl,fail. -
+%zapros5(S),write(S),nl,fail. +
+%структурой: фамилия, имя, отчество, возраст, национальность, образование, ежемесячный доход, дополнительные условия,требования к партнеру.
+%Дополнительные условия : владение жилой площадью, наличие детей,отсутствие вредных привычек. 
+%Требования к партнеру могут быть описаны структурой: образование, возраст, национальность, ежемесячный доход, дополнительные условия.
+
+%1.	Найти всех клиентов, для которых подходит партнер с высшим образованием и с указанным уровнем дохода;
+%2.	Найти всех клиентов, у которых не указаны дополнительные условия;
+%3.	Найти всех клиентов младше указанного возраста;
+%4.	Найти клиента, которому требуется самый молодой партнер;
+%5.	Найти всех клиентов, у которых нет детей.
